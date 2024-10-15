@@ -9,7 +9,11 @@ function SideBar(){
   
 
     return(<SideBarStyled theme={theme}>
-        SideBar
+        <div className="profile">
+            <div className="profile-overlay">
+                <img src="/avatar1.png" alt="profile" width={70} height={70}/>
+            </div>
+        </div>
     </SideBarStyled>)
 }
 
