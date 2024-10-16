@@ -16,6 +16,7 @@ const GlobalStyles = styled.div`
   display: flex;
   gap: 2.5rem;
   height: 100%;
+  box-sizing: border-box;
 `;
 
 export default GlobalStyleProvider;
