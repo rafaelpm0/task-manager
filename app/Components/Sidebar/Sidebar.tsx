@@ -162,7 +162,7 @@ const SideBarStyled = styled.nav`
       content: "";
       left:0;
       top:0;
-      width: 0;
+      width: 0; 
       height:100%;
       z-index: 1;
       background-color: ${(props)=> props.theme.activeNavLinkHover};
@@ -173,7 +173,7 @@ const SideBarStyled = styled.nav`
       position: absolute;
       content: "";
       right:0;
-      top:0;
+      top:0; 
       width: 0;
       height:100%;
       background-color: ${(props)=> props.theme.colorGreenDark};

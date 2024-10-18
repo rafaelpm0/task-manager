@@ -1,7 +1,9 @@
-import Image from "next/image";
+import Tasks from "./Components/Tasks/Tasks";
 
 export default function Home() {
-  return (<main>
-      <h1>Main Content</h1>
-  </main>  );
+  return (
+    <main>
+      <Tasks/>
+    </main>
+  );
 }
