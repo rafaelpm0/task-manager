@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import SideBar from "./components/Sidebar/Sidebar";
-import GlobalStyleProvider from "./components/providers/GlobalStyleProvider";
-import ContextProvider from "./components/providers/ContextProvider";
-import { ClerkProvider } from "@clerk/nextjs";
+import SideBar from "./Components/Sidebar/Sidebar";
+import GlobalStyleProvider from "./Components/providers/GlobalStyleProvider";
+import ContextProvider from "./Components/providers/ContextProvider";
+import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from "@clerk/nextjs";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -44,14 +44,19 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <ContextProvider>
-            <GlobalStyleProvider>
-              <SideBar />
-              <div className="w-full" style={{ width: "100%" }}>
-                {children}
-              </div>
-            </GlobalStyleProvider>
-          </ContextProvider>
+          <SignedIn>
+            <ContextProvider>
+              <GlobalStyleProvider>
+                <SideBar />
+                <div className="w-full" style={{ width: "100%" }}>
+                  {children}
+                </div>
+              </GlobalStyleProvider>
+            </ContextProvider>
+          </SignedIn>
+          <SignedOut>
+            <RedirectToSignIn />
+          </SignedOut>
         </body>
       </html>
     </ClerkProvider>
