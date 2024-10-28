@@ -4,7 +4,13 @@ import "./globals.css";
 import SideBar from "./Components/Sidebar/Sidebar";
 import GlobalStyleProvider from "./Components/providers/GlobalStyleProvider";
 import ContextProvider from "./Components/providers/ContextProvider";
-import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from "@clerk/nextjs";
+import {
+  ClerkProvider,
+  RedirectToSignIn,
+  SignedIn,
+  SignedOut,
+} from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,8 +33,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-    
-  
   return (
     <ClerkProvider>
       <html lang="en">
@@ -44,19 +48,20 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <SignedIn>
-            <ContextProvider>
-              <GlobalStyleProvider>
+          <ContextProvider>
+            <GlobalStyleProvider>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+              <SignedIn>
                 <SideBar />
-                <div className="w-full" style={{ width: "100%" }}>
-                  {children}
-                </div>
-              </GlobalStyleProvider>
-            </ContextProvider>
-          </SignedIn>
-          <SignedOut>
-            <RedirectToSignIn />
-          </SignedOut>
+              </SignedIn>
+
+              <div className="w-full" style={{ width: "100%" }}>
+                {children}
+              </div>
+            </GlobalStyleProvider>
+          </ContextProvider>
         </body>
       </html>
     </ClerkProvider>

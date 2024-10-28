@@ -1,7 +1,10 @@
-import Tasks from "./components/Tasks/Tasks";
+import { SignedIn } from "@clerk/nextjs";
+import Tasks from "./Components/Tasks/Tasks";
 
 export default function Home() {
   return (
-      <Tasks/>
+    <SignedIn>
+      <Tasks />
+    </SignedIn>
   );
 }
